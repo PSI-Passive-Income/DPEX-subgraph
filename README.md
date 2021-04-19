@@ -1,18 +1,14 @@
-# PancakeSwap Subgraph
+# PSI Dex Subgraph
 
-The Graph exposes a GraphQL endpoint to query the events and entities within the Binance Smart Chain and PancakeSwap ecosystem.
+The Graph exposes a GraphQL endpoint to query the events and entities within the Binance Smart Chain and PSI Dex ecosystem.
 
 Currently, there are multiple subgraphs, but additional subgraphs can be added to this repo:
 
-1. **[Blocks](https://thegraph.com/explorer/subgraph/pancakeswap/blocks)**: Tracks all the blocks on Binance Smart Chain.
+1. **[Blocks](https://thegraph.com/explorer/subgraph/psi-passive-income/blocks)**: Tracks all the blocks on Binance Smart Chain.
 
-2. **[Exchange](https://thegraph.com/explorer/subgraph/pancakeswap/exchange)**: Tracks all PancakeSwap Exchange data with price, volume, liquidity, ...
+2. **[Exchange](https://thegraph.com/explorer/subgraph/psi-passive-income/exchange)**: Tracks all PSI Dex Exchange data with price, volume, liquidity, ...
 
-3. **[DexCandles](https://thegraph.com/explorer/subgraph/pancakeswap/dex-candles)**: Tracks all the PancakeSwap trades (event: `Swap`) with 5m / 15m / 1h / 4h / 1d / 1w candles.
-
-4. **[Profile](https://thegraph.com/explorer/subgraph/pancakeswap/profile)**: Tracks all the PancakeSwap Profile with teams, users, points and campaign.
-
-5. **[Timelock](https://thegraph.com/explorer/subgraph/pancakeswap/timelock)**: Tracks all the timelock transactions queued, executed, and cancelled.
+3. **[DexCandles](https://thegraph.com/explorer/subgraph/psi-passive-income/dex-candles)**: Tracks all the PSI Dex trades (event: `Swap`) with 5m / 15m / 1h / 4h / 1d / 1w candles.
 
 ## To setup and deploy
 
