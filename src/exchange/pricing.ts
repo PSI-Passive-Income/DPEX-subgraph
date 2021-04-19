@@ -4,9 +4,9 @@ import { Pair, Token, Bundle } from "../../generated/schema";
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from "./utils";
 
 const WBNB_ADDRESS = "0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c";
-const WBNB_BUSD_PAIR = "0x1b96b92314c44b159149f7e0303511fb2fc4774f"; // created block 589414
-const DAI_WBNB_PAIR = "0xf3010261b58b2874639ca2e860e9005e3be5de0b"; // created block 481116
-const USDT_WBNB_PAIR = "0x20bcc3b8a0091ddac2d0bc30f68e6cbb97de59cd"; // created block 648115
+const WBNB_BUSD_PAIR = "0x03386B91E1362cf5d790fbbf03388E5b94Abe50a"; // created block 6678884
+const DAI_WBNB_PAIR = "0x50d6e8E190D055A0A425d1B7094e98a0e6F0488d"; // created block 6678911
+const USDT_WBNB_PAIR = "0x424a3B8E9F7f1590826cC71745E1c7A3A8De8AeC"; // created block 6680913
 
 export function getBnbPriceInUSD(): BigDecimal {
   // fetch bnb prices for each stablecoin

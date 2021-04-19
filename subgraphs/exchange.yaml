@@ -1,6 +1,6 @@
 specVersion: 0.0.2
-description: PancakeSwap is a decentralized protocol for automated token exchange on Binance Smart Chain.
-repository: https://github.com/pancakeswap
+description: PSI Dex is a decentralized protocol for automated token exchange on Binance Smart Chain.
+repository: https://github.com/PSI-Passive-Income
 schema:
   file: ./exchange.graphql
 dataSources:
@@ -8,9 +8,9 @@ dataSources:
     name: Factory
     network: bsc
     source:
-      address: '0xBCfCcbde45cE874adCB698cC183deBcF17952812'
+      address: '0x92Be203e0dfb40c1a1F937a36929E02856257A2e'
       abi: Factory
-      startBlock: 586851
+      startBlock: 6423939
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

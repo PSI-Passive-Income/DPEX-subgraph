@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 description: PancakeSwap Timelock contract
-repository: https://github.com/pancakeswap
+repository: https://github.com/PSI-Passive-Income
 schema:
   file: ./timelock.graphql
 dataSources:
@@ -10,7 +10,7 @@ dataSources:
     source:
       address: '0xA1f482Dc58145Ba2210bC21878Ca34000E2e8fE4'
       abi: Timelock
-      startBlock: 704262
+      startBlock: 6423939
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

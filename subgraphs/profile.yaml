@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 description: Pancake Profile
-repository: https://github.com/pancakeswap
+repository: https://github.com/PSI-Passive-Income
 schema:
   file: ./profile.graphql
 dataSources:
@@ -10,7 +10,7 @@ dataSources:
     source:
       address: '0xDf4dBf6536201370F95e06A0F8a7a70fE40E388a'
       abi: Profile
-      startBlock: 4570433
+      startBlock: 6423939
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

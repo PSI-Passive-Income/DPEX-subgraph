@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 description: Pancake Trading Competition V1
-repository: https://github.com/pancakeswap
+repository: https://github.com/PSI-Passive-Income
 schema:
   file: ./trading.graphql
 dataSources:
@@ -10,7 +10,7 @@ dataSources:
     source:
       address: '0xd718baa0B1F4f70dcC8458154042120FFE0DEFFA'
       abi: TradingCompetitionV1
-      startBlock: 6214239
+      startBlock: 6423939
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

@@ -1,31 +1,31 @@
 /* eslint-disable prefer-const */
 import { PairHourData } from "../../generated/schema";
 import { BigInt, BigDecimal, ethereum } from "@graphprotocol/graph-ts";
-import { Pair, Bundle, Token, PancakeFactory, PancakeDayData, PairDayData, TokenDayData } from "../../generated/schema";
+import { Pair, Bundle, Token, DPexFactory, DPexDayData, PairDayData, TokenDayData } from "../../generated/schema";
 import { ONE_BI, ZERO_BD, ZERO_BI, FACTORY_ADDRESS } from "./utils";
 
-export function updatePancakeDayData(event: ethereum.Event): PancakeDayData {
-  let pancake = PancakeFactory.load(FACTORY_ADDRESS);
+export function updateDPexDayData(event: ethereum.Event): DPexDayData {
+  let pancake = DPexFactory.load(FACTORY_ADDRESS);
   let timestamp = event.block.timestamp.toI32();
   let dayID = timestamp / 86400;
   let dayStartTimestamp = dayID * 86400;
-  let pancakeDayData = PancakeDayData.load(dayID.toString());
-  if (pancakeDayData === null) {
-    pancakeDayData = new PancakeDayData(dayID.toString());
-    pancakeDayData.date = dayStartTimestamp;
-    pancakeDayData.dailyVolumeUSD = ZERO_BD;
-    pancakeDayData.dailyVolumeBNB = ZERO_BD;
-    pancakeDayData.totalVolumeUSD = ZERO_BD;
-    pancakeDayData.totalVolumeBNB = ZERO_BD;
-    pancakeDayData.dailyVolumeUntracked = ZERO_BD;
+  let dpexDayData = DPexDayData.load(dayID.toString());
+  if (dpexDayData === null) {
+    dpexDayData = new DPexDayData(dayID.toString());
+    dpexDayData.date = dayStartTimestamp;
+    dpexDayData.dailyVolumeUSD = ZERO_BD;
+    dpexDayData.dailyVolumeBNB = ZERO_BD;
+    dpexDayData.totalVolumeUSD = ZERO_BD;
+    dpexDayData.totalVolumeBNB = ZERO_BD;
+    dpexDayData.dailyVolumeUntracked = ZERO_BD;
   }
 
-  pancakeDayData.totalLiquidityUSD = pancake.totalLiquidityUSD;
-  pancakeDayData.totalLiquidityBNB = pancake.totalLiquidityBNB;
-  pancakeDayData.txCount = pancake.txCount;
-  pancakeDayData.save();
+  dpexDayData.totalLiquidityUSD = pancake.totalLiquidityUSD;
+  dpexDayData.totalLiquidityBNB = pancake.totalLiquidityBNB;
+  dpexDayData.txCount = pancake.txCount;
+  dpexDayData.save();
 
-  return pancakeDayData as PancakeDayData;
+  return dpexDayData as DPexDayData;
 }
 
 export function updatePairDayData(event: ethereum.Event): PairDayData {
