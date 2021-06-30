@@ -240,6 +240,8 @@ export function handleSync(event: Sync): void {
 
   token0.derivedBNB = findBnbPerToken(token0 as Token)
   token1.derivedBNB = findBnbPerToken(token1 as Token)
+  token0.derivedUSD = token0.derivedBNB.times(bundle.bnbPrice)
+  token1.derivedUSD = token1.derivedBNB.times(bundle.bnbPrice)
   token0.save()
   token1.save()
 
@@ -530,16 +532,12 @@ export function handleSwap(event: Swap): void {
   // swap specific updating for token0
   token0DayData.dailyVolumeToken = token0DayData.dailyVolumeToken.plus(amount0Total)
   token0DayData.dailyVolumeBNB = token0DayData.dailyVolumeBNB.plus(amount0Total.times(token1.derivedBNB as BigDecimal))
-  token0DayData.dailyVolumeUSD = token0DayData.dailyVolumeUSD.plus(
-    amount0Total.times(token0.derivedBNB as BigDecimal).times(bundle.bnbPrice)
-  )
+  token0DayData.dailyVolumeUSD = token0DayData.dailyVolumeUSD.plus(amount0Total.times(token0.derivedUSD as BigDecimal))
   token0DayData.save()
 
   // swap specific updating
   token1DayData.dailyVolumeToken = token1DayData.dailyVolumeToken.plus(amount1Total)
   token1DayData.dailyVolumeBNB = token1DayData.dailyVolumeBNB.plus(amount1Total.times(token1.derivedBNB as BigDecimal))
-  token1DayData.dailyVolumeUSD = token1DayData.dailyVolumeUSD.plus(
-    amount1Total.times(token1.derivedBNB as BigDecimal).times(bundle.bnbPrice)
-  )
+  token1DayData.dailyVolumeUSD = token1DayData.dailyVolumeUSD.plus(amount1Total.times(token1.derivedUSD as BigDecimal))
   token1DayData.save()
 }

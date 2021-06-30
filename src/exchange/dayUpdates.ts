@@ -2,7 +2,7 @@ import { PairHourData } from '../../generated/schema'
 /* eslint-disable prefer-const */
 import { BigInt, BigDecimal, ethereum } from '@graphprotocol/graph-ts'
 import { Pair, Bundle, Token, DPexFactory, DPexDayData, PairDayData, TokenDayData } from '../../generated/schema'
-import { ONE_BI, ZERO_BD, ZERO_BI, FACTORY_ADDRESS } from './utils'
+import { ONE_BI, ZERO_BD, ZERO_BI, FACTORY_ADDRESS, ONE_BD } from './utils'
 
 export function updateDPexDayData(event: ethereum.Event): DPexDayData {
   let dpex = DPexFactory.load(FACTORY_ADDRESS)
@@ -90,7 +90,6 @@ export function updatePairHourData(event: ethereum.Event): PairHourData {
 }
 
 export function updateTokenDayData(token: Token, event: ethereum.Event): TokenDayData {
-  let bundle = Bundle.load('1')
   let timestamp = event.block.timestamp.toI32()
   let dayID = timestamp / 86400
   let dayStartTimestamp = dayID * 86400
@@ -104,17 +103,17 @@ export function updateTokenDayData(token: Token, event: ethereum.Event): TokenDa
     tokenDayData = new TokenDayData(tokenDayID)
     tokenDayData.date = dayStartTimestamp
     tokenDayData.token = token.id
-    tokenDayData.priceUSD = token.derivedBNB.times(bundle.bnbPrice)
+    tokenDayData.priceUSD = token.derivedUSD.times(ONE_BD)
     tokenDayData.dailyVolumeToken = ZERO_BD
     tokenDayData.dailyVolumeBNB = ZERO_BD
     tokenDayData.dailyVolumeUSD = ZERO_BD
     tokenDayData.dailyTxns = ZERO_BI
     tokenDayData.totalLiquidityUSD = ZERO_BD
   }
-  tokenDayData.priceUSD = token.derivedBNB.times(bundle.bnbPrice)
+  tokenDayData.priceUSD = token.derivedUSD.times(ONE_BD)
   tokenDayData.totalLiquidityToken = token.totalLiquidity
   tokenDayData.totalLiquidityBNB = token.totalLiquidity.times(token.derivedBNB as BigDecimal)
-  tokenDayData.totalLiquidityUSD = tokenDayData.totalLiquidityBNB.times(bundle.bnbPrice)
+  tokenDayData.totalLiquidityUSD = token.totalLiquidity.times(token.derivedUSD as BigDecimal)
   tokenDayData.dailyTxns = tokenDayData.dailyTxns.plus(ONE_BI)
   tokenDayData.save()
 

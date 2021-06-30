@@ -3,7 +3,7 @@ import { log, BigInt, BigDecimal, Address, ethereum } from '@graphprotocol/graph
 import { BEP20 } from "../../../generated/Factory/BEP20";
 import { BEP20SymbolBytes } from "../../../generated/Factory/BEP20SymbolBytes";
 import { BEP20NameBytes } from "../../../generated/Factory/BEP20NameBytes";
-import { User, Bundle, Token, LiquidityPosition, LiquidityPositionSnapshot, Pair } from '../../../generated/schema'
+import { User, Token, LiquidityPosition, LiquidityPositionSnapshot, Pair } from '../../../generated/schema'
 import { Factory as FactoryContract } from "../../../generated/templates/Pair/Factory";
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
@@ -149,7 +149,6 @@ export function createUser(address: Address): void {
 
 export function createLiquiditySnapshot(position: LiquidityPosition, event: ethereum.Event): void {
   let timestamp = event.block.timestamp.toI32()
-  let bundle = Bundle.load('1')
   let pair = Pair.load(position.pair)
   let token0 = Token.load(pair.token0)
   let token1 = Token.load(pair.token1)
@@ -161,8 +160,8 @@ export function createLiquiditySnapshot(position: LiquidityPosition, event: ethe
   snapshot.block = event.block.number.toI32()
   snapshot.user = position.user
   snapshot.pair = position.pair
-  snapshot.token0PriceUSD = token0.derivedBNB.times(bundle.bnbPrice)
-  snapshot.token1PriceUSD = token1.derivedBNB.times(bundle.bnbPrice)
+  snapshot.token0PriceUSD = token0.derivedUSD.times(ONE_BD)
+  snapshot.token1PriceUSD = token1.derivedUSD.times(ONE_BD)
   snapshot.reserve0 = pair.reserve0
   snapshot.reserve1 = pair.reserve1
   snapshot.reserveUSD = pair.reserveUSD
