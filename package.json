@@ -28,7 +28,10 @@
     "deploy:timelock": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ psi-passive-income/timelock subgraphs/timelock.yaml",
     "deploy:trading": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ psi-passive-income/trading-competition-v1 subgraphs/trading.yaml",
     "format": "prettier --write '*/**/*.{js,ts}'",
-    "lint": "eslint '*/**/*.{js,ts}'"
+    "lint": "eslint '*/**/*.{js,ts}'",
+    "create-local:exchange-lite": "graph create --node http://localhost:8020/ psi-passive-income/exchange",
+    "remove-local:exchange-lite": "graph remove --node http://localhost:8020/ psi-passive-income/exchange",
+    "deploy-local:exchange-lite": "graph deploy --debug --node http://localhost:8020/ --ipfs http://localhost:5001 psi-passive-income/exchange subgraphs/exchange-lite.yaml"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.0.0",

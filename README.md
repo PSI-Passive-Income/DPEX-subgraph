@@ -10,6 +10,12 @@ Currently, there are multiple subgraphs, but additional subgraphs can be added t
 
 3. **[DexCandles](https://thegraph.com/explorer/subgraph/psi-passive-income/dex-candles)**: Tracks all the PSI Dex trades (event: `Swap`) with 5m / 15m / 1h / 4h / 1d / 1w candles.
 
+## BSC errors
+
+Graph has issues with indexing the bsc chain, so currently our graph schemes are not working as they should:
+[https://github.com/graphprotocol/graph-node/issues/2517](https://github.com/graphprotocol/graph-node/issues/2517)
+[https://status.thegraph.com](https://status.thegraph.com)
+
 ## To setup and deploy
 
 For any of the subgraph: `blocks` as `[subgraph]`

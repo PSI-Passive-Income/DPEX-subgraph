@@ -17,6 +17,7 @@ dataSources:
       language: wasm/assemblyscript
       file: ../src/exchange-lite/factory.ts
       entities:
+        - Factory
         - Pair
         - Token
       abis:
@@ -43,7 +44,6 @@ templates:
       language: wasm/assemblyscript
       file: ../src/exchange-lite/pair.ts
       entities:
-        - Bundle
         - Pair
         - Token
       abis:

@@ -1,39 +1,109 @@
-type Bundle @entity {
+# Schema
+type _Schema_
+  # Token
+  @fulltext(
+    name: "tokenSearch",
+    language: en
+    algorithm: rank,
+    include: [
+      {
+        entity: "Token",
+        fields: [
+          { name: "id" },
+          { name: "name" },
+          { name: "symbol" },
+        ]
+      }
+    ]
+  )
+  # Pair
+  @fulltext(
+    name: "pairSearch",
+    language: en
+    algorithm: rank,
+    include: [
+      {
+        entity: "Pair",
+        fields: [
+          { name: "id" },
+          { name: "name" },
+        ]
+      }
+    ]
+  )
+
+"""
+PSI Dex Factory
+"""
+type Factory @entity {
+  "ID (address)"
   id: ID!
 
-  bnbPrice: BigDecimal!
+  "Total of Pairs"
+  totalPairs: BigInt!
+
+  "Total of Tokens"
+  totalTokens: BigInt!
 }
 
+"""
+PSI Dex Pairs (Pancake LPs - Cake-LP)
+"""
 type Pair @entity {
+  "ID (address)"
   id: ID!
 
+  "Token 0"
   token0: Token!
+  "Token 1"
   token1: Token!
+
+  "Token0 Symbol - Token1 Symbol"
+  name: String!
+
+  "Token0 reserve"
   reserve0: BigDecimal!
+  "Token1 reserve"
   reserve1: BigDecimal!
 
+  "Reserve, in BNB"
   reserveBNB: BigDecimal!
-  reserveUSD: BigDecimal!
-  trackedReserveBNB: BigDecimal!
 
+  "Token0 price"
   token0Price: BigDecimal!
+  "Token1 price"
   token1Price: BigDecimal!
+  "Volume, in token0 (base)"
   volumeToken0: BigDecimal!
+  "Volume, in token1 (quote)"
   volumeToken1: BigDecimal!
 
+  "Volume, in BNB"
   volumeBNB: BigDecimal!
-  volumeUSD: BigDecimal!
-  untrackedVolumeBNB: BigDecimal!
-  untrackedVolumeUSD: BigDecimal!
+
+  "Block number"
+  block: BigInt!
+  "Block timestamp"
+  timestamp: BigInt!
 }
 
+"""
+PSI Dex Tokens
+"""
 type Token @entity {
+  "ID (address)"
   id: ID!
 
+  "Name"
   name: String!
+  "Symbol"
   symbol: String!
+  "Decimals"
   decimals: BigInt!
 
+  "Price, in BNB"
   derivedBNB: BigDecimal!
-  derivedUSD: BigDecimal!
+
+  "Pairs, with whitelisted Token(s)"
+  whitelist: [Pair!]!
 }
